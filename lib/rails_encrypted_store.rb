@@ -58,7 +58,7 @@ module RailsEncryptedStore
     attribute = initialize_store_attribute("plain_#{store_attribute}")
     cipher = ::Gibberish::AES.new(self.aes_key)
     send(store_attribute).each do |key, value|
-      attribute[key] = cipher.dec(encrypted_data[key]).force_encoding('UTF-8')
+      attribute[key] = cipher.dec(send(store_attribute)[key]).force_encoding('UTF-8')
     end
   end
 
