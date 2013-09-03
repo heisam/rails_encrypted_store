@@ -1,13 +1,7 @@
+#!/usr/bin/env rake
 require "bundler/gem_tasks"
+require 'rspec/core/rake_task'
 
-require 'rake/testtask'
+RSpec::Core::RakeTask.new(:spec)
 
-desc 'Default: run unit tests.'
-task :default => :test
-
-desc 'Test the rails_encrypted_store gem.'
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
-end
+task :default => :spec
