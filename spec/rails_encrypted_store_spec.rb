@@ -7,7 +7,7 @@ describe RailsEncryptedStore do
       self.table_name = 'members'
       include RailsEncryptedStore
       
-      def aes_key
+      def data_key
         "2sZ6acBEcekBDrvVUfx2TZK3MC"
       end
     end
@@ -15,7 +15,7 @@ describe RailsEncryptedStore do
 
   it "allows you to specify attributes to be encrypted" do
     member_class.encrypted_store :data, accessors: [:name, :email, :phone]
-    member_class.encrypted_attributes[:data].should == [:name, :email, :phone]
+    member_class.stored_attributes[:data].should == [:name, :email, :phone]
   end
 
   it "allows you to set and get attributes values" do
@@ -51,8 +51,7 @@ describe RailsEncryptedStore do
 
   it "allows you to update attributes values" do
     member_class.encrypted_store :data, accessors: [:name, :email, :phone]
-    member_class.create(name: 'Robin Masters', email: 'robin@masters.com', phone: '12345678')
-    member = member_class.last
+    member = member_class.create(name: 'Robin Masters', email: 'robin@masters.com', phone: '12345678')
     member.update_attributes(name: 'Thomas Magnum', email: 'thomas@magnum.com', phone: '87654321')
     member = member_class.last
     member.decrypt_store(:data)
