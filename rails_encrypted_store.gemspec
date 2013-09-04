@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["hei.sam@gmail.com"]
   gem.description   = "Encrypted ActiveRecord::Store"
   gem.summary       = "Encrypted ActiveRecord::Store"
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/heisam/rails_encrypted_store"
   gem.license       = "MIT"
 
   gem.files         = `git ls-files`.split($/)
